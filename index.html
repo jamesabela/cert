@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Parameter Reader</title>
+</head>
+<body>
+<p id="name">Loading...</p>
+<p id="points">Loading...</p>
+
+<script>
+    // http://localhost:63342/untitled1/index.html?name=James&score=23
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to get the value of a URL parameter
+        function getURLParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Get the 'param' parameter from the URL
+        const nameValue = getURLParameter('name');
+        const scoreValue = getURLParameter('score');
+
+        // Display the value in the webpage
+        const outputElement = document.getElementById('name');
+            outputElement.textContent = nameValue +" is awarded Games Master status"
+        const outputElement2 = document.getElementById('points');
+        outputElement2.textContent = "points: "+ scoreValue;
+    });
+</script>
+</body>
+</html>
