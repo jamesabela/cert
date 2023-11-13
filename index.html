@@ -7,10 +7,47 @@
     <title>URL Parameter Reader</title>
 </head>
 <body>
-<p id="name">Loading...</p>
-<p id="score">Loading...</p>
+<table width="612" border="0">
+    <tbody>
+    <tr>
+        <td>
+            <span style="text-align: center"></span><span style="text-align: center"></span><img src="banner.jpg" alt="Girl in a jacket">
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 24px;">CERTIFICATE OF ACCOMPLISHMENT</td>
+    </tr>
+    <tr>
+        <td><p style="text-align: center"><strong id="name"  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif; font-weight: bold; text-align: center;">Loading...</strong></p>
+            <p style="font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif; text-align: center;">In recognition of your coding prowess you have been awarded Games Master status. You have won this due to your diligence in programming an excellent range of Python Challenges.</p>
+            <p id="points" style="font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif; text-align: center;">Loading...</p></td>
+    </tr>
+    <tr>
+        <td>
+            <table width="612" border="0">
+                <tbody>
+                <tr>
+                    <td style="font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif; text-align: left;">
+                        <p>Awarded by Mr Abela</p>
+                    </td>
+                    <td style="font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif; text-align: right;">
+                        <p id="myDate">date</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="footer.jpg" alt="colourful footer">
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 <script>
+    // https://jamesabela.github.io/cert/index.html?name=James&score=23434
     // Wait for the DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function () {
         // Function to get the value of a URL parameter
@@ -19,15 +56,30 @@
             return urlParams.get(name);
         }
 
+        function formatDate(date) {
+            let day = date.getDate();
+            let month = date.getMonth() + 1; // Months are zero-based
+            let year = date.getFullYear();
+
+            // Add a leading zero to day and month if they are less than 10
+            day = day < 10 ? '0' + day : day;
+            month = month < 10 ? '0' + month : month;
+
+            return day + '/' + month + '/' + year;
+        }
+
+
         // Get the 'param' parameter from the URL
         const nameValue = getURLParameter('name');
-        const scoreValue = getURLParameter('score');
+        const scoreValue = getURLParameter('score')
 
         // Display the value in the webpage
         const outputElement = document.getElementById('name');
-            outputElement.textContent = nameValue +" is awarded Games Master status"
-        const outputElement2 = document.getElementById('score');
-        outputElement2.textContent = "Score: "+ scoreValue;
+            outputElement.textContent = nameValue +" is awarded Games Master Status"
+        const outputElement2 = document.getElementById('points');
+        outputElement2.textContent = "Points: "+ scoreValue;
+        const today = new Date();
+        document.getElementById("myDate").innerHTML = "on the date of: "+formatDate(today);
     });
 </script>
 </body>
