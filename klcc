@@ -71,13 +71,9 @@
 
         // Get the 'param' parameter from the URL
         const nameValue = getURLParameter('name');
-        const scoreValue = getURLParameter('score')
-
         // Display the value in the webpage
         const outputElement = document.getElementById('name');
-            outputElement.textContent = nameValue +" is awarded Games Master Status"
-        const outputElement2 = document.getElementById('points');
-        outputElement2.textContent = "Points: "+ scoreValue;
+            outputElement.textContent = nameValue +" participation award"
         const today = new Date();
         document.getElementById("myDate").innerHTML = "on the date of: "+formatDate(today);
     });
