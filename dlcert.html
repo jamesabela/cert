@@ -5,71 +5,111 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Certificate of Digital Learning</title>
+  <style>
+    body { background: #f5f5f5; margin: 0; padding: 0; }
+    #certWrap { background: #fff; padding: 10px 0; }
+    #certificateArea { width: 850px; margin: 0 auto; background: #fff; }
+
+    /* Action buttons */
+    .actionBtn {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 18px;
+      background-color: #0077b5;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+    .actionBtn:hover { background-color: #005983; }
+
+    /* Hide buttons when printing */
+    @media print {
+      .actionBtn { display: none; }
+    }
+  </style>
+  <!-- html2pdf library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-<table width="850" border="0" align="center">
-  <tbody>
-  <!-- Header -->
-  <tr>
-    <td style="text-align: center;">
-      <img src="proheader.png" alt="Header Image" style="max-width: 100%; height: auto;">
-    </td>
-  </tr>
 
-  <!-- Title -->
-  <tr>
-    <td style="text-align: center; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; font-size: 34px; font-weight: bold; padding: 20px 0;">
-      CERTIFICATE OF DIGITAL LEARNING
-    </td>
-  </tr>
+<div id="certWrap">
+  <!-- Only this section is exported to PDF -->
+  <div id="certificateArea">
+    <table width="850" border="0" align="center">
+      <tbody>
+      <!-- Header -->
+      <tr>
+        <td style="text-align: center;">
+          <img src="proheader.png" alt="Header Image" style="max-width: 100%; height: auto;">
+        </td>
+      </tr>
 
-  <!-- Name -->
-  <tr>
-    <td style="text-align: center;">
-      <div id="name" style="font-size: 40px; font-weight: bold; color: #0a7ea4; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; margin: 15px 0;">
-        __________
-      </div>
-    </td>
-  </tr>
+      <!-- Title -->
+      <tr>
+        <td style="text-align: center; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; font-size: 34px; font-weight: bold; padding: 20px 0;">
+          CERTIFICATE OF DIGITAL LEARNING
+        </td>
+      </tr>
 
-  <!-- Role -->
-  <tr>
-    <td style="text-align: center;">
-      <div id="role" style="font-size: 22px; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; color: #555; margin-bottom: 25px;">
-        Participant
-      </div>
-    </td>
-  </tr>
+      <!-- Name -->
+      <tr>
+        <td style="text-align: center;">
+          <div id="name" style="font-size: 40px; font-weight: bold; color: #0a7ea4; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; margin: 15px 0;">
+            __________
+          </div>
+        </td>
+      </tr>
 
-  <!-- Session Text -->
-  <tr>
-    <td style="text-align: center; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.6; padding: 0 40px;">
-      This certificate recognises <span id="nameText">__________</span> for active participation in the Digital Learning session</br>
-      <strong>"<span id="session">Session Title</span>"</strong>.
-    </td>
-  </tr>
+      <!-- Role -->
+      <tr>
+        <td style="text-align: center;">
+          <div id="role" style="font-size: 22px; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; color: #555; margin-bottom: 25px;">
+            Participant
+          </div>
+        </td>
+      </tr>
 
-  <!-- Metadata -->
-  <tr>
-    <td>
-      <table width="100%" border="0" style="margin-top: 40px; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; font-size: 16px;">
-        <tbody>
-        <tr>
-          <td style="text-align: left; padding-left: 20px;">
-            Session: <span id="sessionMeta">Session Title</span>
-          </td>
-          <td style="text-align: right; padding-right: 20px;">
-            Date: <span id="dateOut">DD/MM/YYYY</span>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </td>
-  </tr>
+      <!-- Session Text -->
+      <tr>
+        <td style="text-align: center; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.6; padding: 0 40px;">
+          This certificate recognises <span id="nameText">__________</span> for active participation in the Digital Learning session<br>
+          <strong>"<span id="session">Session Title</span>"</strong>.
+        </td>
+      </tr>
 
-  <!-- Footer -->
-  </tbody>
-</table>
+      <!-- Metadata -->
+      <tr>
+        <td>
+          <table width="100%" border="0" style="margin-top: 40px; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; font-size: 16px;">
+            <tbody>
+            <tr>
+              <td style="text-align: left; padding-left: 20px;">
+                Session: <span id="sessionMeta">Session Title</span>
+              </td>
+              <td style="text-align: right; padding-right: 20px;">
+                Date: <span id="dateOut">DD/MM/YYYY</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Action Buttons -->
+  <div style="text-align:center; margin-top:20px;">
+    <button id="copyBtn" class="actionBtn">Copy LinkedIn Text</button>
+    <button id="printBtn" class="actionBtn">Print Certificate</button>
+    <button id="pdfBtn" class="actionBtn">Save as PDF</button>
+  </div>
+</div>
 
 <script>
   // Helper to read URL parameter
@@ -99,13 +139,44 @@
       if (!isNaN(parsed.getTime())) dateObj = parsed;
     }
 
-    // Fill content
+    // Fill certificate fields
     document.getElementById("name").textContent = name;
     document.getElementById("nameText").textContent = name;
     document.getElementById("role").textContent = role;
     document.getElementById("session").textContent = session;
     document.getElementById("sessionMeta").textContent = session;
     document.getElementById("dateOut").textContent = formatDMY(dateObj);
+
+    // Copy LinkedIn text button
+    document.getElementById("copyBtn").addEventListener("click", () => {
+      const text =
+              `🎓 I'm pleased to have completed the **Digital Learning session on ${session}**.
+
+This session explored how AI can support lesson planning, resource creation, and efficiency in teaching practice.
+
+#DigitalLearning #AIinEducation #ProfessionalDevelopment`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("LinkedIn text copied! Paste it into your LinkedIn post.");
+      });
+    });
+
+    // Print button
+    document.getElementById("printBtn").addEventListener("click", () => {
+      window.print();
+    });
+
+    // Save as PDF button
+    document.getElementById("pdfBtn").addEventListener("click", () => {
+      const element = document.getElementById("certificateArea");
+      const opt = {
+        margin:       [0,0,0,0],
+        filename:     "Certificate_" + name.replace(/\s+/g, "_") + ".pdf",
+        image:        { type: "jpeg", quality: 0.98 },
+        html2canvas:  { scale: 2, backgroundColor: "#ffffff" },
+        jsPDF:        { unit: "pt", format: [850, 600], orientation: "landscape" }
+      };
+      html2pdf().set(opt).from(element).save();
+    });
   })();
 </script>
 </body>
