@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate of Digital Learning</title>
+</head>
+<body>
+<table width="850" border="0" align="center">
+  <tbody>
+  <!-- Header -->
+  <tr>
+    <td style="text-align: center;">
+      <img src="proheader.png" alt="Header Image" style="max-width: 100%; height: auto;">
+    </td>
+  </tr>
+
+  <!-- Title -->
+  <tr>
+    <td style="text-align: center; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; font-size: 34px; font-weight: bold; padding: 20px 0;">
+      CERTIFICATE OF DIGITAL LEARNING
+    </td>
+  </tr>
+
+  <!-- Name -->
+  <tr>
+    <td style="text-align: center;">
+      <div id="name" style="font-size: 40px; font-weight: bold; color: #0a7ea4; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; margin: 15px 0;">
+        __________
+      </div>
+    </td>
+  </tr>
+
+  <!-- Role -->
+  <tr>
+    <td style="text-align: center;">
+      <div id="role" style="font-size: 22px; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; color: #555; margin-bottom: 25px;">
+        Participant
+      </div>
+    </td>
+  </tr>
+
+  <!-- Session Text -->
+  <tr>
+    <td style="text-align: center; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.6; padding: 0 40px;">
+      This certificate recognises <span id="nameText">__________</span> for active participation in the Digital Learning session</br>
+      <strong>"<span id="session">Session Title</span>"</strong>.
+    </td>
+  </tr>
+
+  <!-- Metadata -->
+  <tr>
+    <td>
+      <table width="100%" border="0" style="margin-top: 40px; font-family: 'Gill Sans','Gill Sans MT', Helvetica, Arial, sans-serif; font-size: 16px;">
+        <tbody>
+        <tr>
+          <td style="text-align: left; padding-left: 20px;">
+            Session: <span id="sessionMeta">Session Title</span>
+          </td>
+          <td style="text-align: right; padding-right: 20px;">
+            Date: <span id="dateOut">DD/MM/YYYY</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+
+  <!-- Footer -->
+  </tbody>
+</table>
+
+<script>
+  // Helper to read URL parameter
+  function qp(key) {
+    const v = new URLSearchParams(window.location.search).get(key);
+    return v && v.trim() ? v.trim() : "";
+  }
+
+  function formatDMY(d) {
+    const dd = String(d.getDate()).padStart(2, "0");
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const yyyy = d.getFullYear();
+    return dd + "/" + mm + "/" + yyyy;
+  }
+
+  (function init() {
+    let name = qp("name");
+    name = name ? name : "__________"; // Underscores if blank
+    let role = qp("role");
+    role = role ? role : "Participant"; // Default role
+    const session = qp("session") || "Digital Learning Session";
+    const dateParam = qp("date");
+
+    let dateObj = new Date();
+    if (dateParam) {
+      const parsed = new Date(dateParam);
+      if (!isNaN(parsed.getTime())) dateObj = parsed;
+    }
+
+    // Fill content
+    document.getElementById("name").textContent = name;
+    document.getElementById("nameText").textContent = name;
+    document.getElementById("role").textContent = role;
+    document.getElementById("session").textContent = session;
+    document.getElementById("sessionMeta").textContent = session;
+    document.getElementById("dateOut").textContent = formatDMY(dateObj);
+  })();
+</script>
+</body>
+</html>
